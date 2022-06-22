@@ -61,10 +61,11 @@ class Marketplace
     /**
      * Get Marketplace Enrollment Validate
      *
+     * @param array $data
      * @return ResponseInterface
      */
-    public function getEnrollmentValidate() : ResponseInterface
+    public function getEnrollmentValidate(array $data) : ResponseInterface
     {
-        return $this->api->post('/rate-areas');
+        return $this->api->post('/rate-areas', [], $data);
     }
 }
