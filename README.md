@@ -1,10 +1,8 @@
-# Very short description of the package
+# This package fetches data from Marketplace API
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/ta/healthcaremarketplaceapi.svg?style=flat-square)](https://packagist.org/packages/ta/healthcaremarketplaceapi)
-[![Total Downloads](https://img.shields.io/packagist/dt/ta/healthcaremarketplaceapi.svg?style=flat-square)](https://packagist.org/packages/ta/healthcaremarketplaceapi)
-![GitHub Actions](https://github.com/ta/healthcaremarketplaceapi/actions/workflows/main.yml/badge.svg)
+[Marketplace API Documentation](https://marketplaceapicms.docs.apiary.io/#introduction/quickstart/search-for-health-insurance-plans)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+The Marketplace API delivers data that helps users find and evaluate health care insurance plans, providers, and coverage information on the marketplace. It’s used by HealthCare.gov and other third party services. Request an API token here, or learn more from the developer site.
 
 ## Installation
 
