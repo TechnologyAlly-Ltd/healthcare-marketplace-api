@@ -2,6 +2,8 @@
 
 namespace TA\HealthcareMarketplaceAPI;
 
+use TA\HealthcareMarketplaceAPI\API\HTTP\Api;
+use TA\HealthcareMarketplaceAPI\API\Marketplace;
 use TA\HealthcareMarketplaceAPI\Config\Config;
 
 class HealthcareMarketplaceAPI
@@ -34,5 +36,29 @@ class HealthcareMarketplaceAPI
     public function Config() : Config
     {
         return $this->config;
+    }
+
+    /**
+     * Holds the API instance for the request
+     *
+     * @return Api
+     */
+    private function Api() : Api
+    {
+        return new Api(
+            $this->config
+        );
+    }
+
+    /**
+     * Get the Marketplace instance
+     *
+     * @return Marketplace
+     */
+    public function Marketplace() : Marketplace
+    {
+        return new Marketplace(
+            $this->Api()
+        );
     }
 }
