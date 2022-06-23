@@ -2,7 +2,6 @@
 
 namespace TA\HealthcareMarketplaceAPI\Interfaces;
 
-use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 
 interface APIInterface
