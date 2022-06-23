@@ -2,7 +2,7 @@
 
 namespace TA\HealthcareMarketplaceAPI;
 
-use TA\HealthcareMarketplaceAPI\API\HTTP\Api;
+use TA\HealthcareMarketplaceAPI\HTTP\Api;
 use TA\HealthcareMarketplaceAPI\API\Marketplace;
 use TA\HealthcareMarketplaceAPI\Config\Config;
 

@@ -1,10 +1,11 @@
 <?php
 
-namespace TA\HealthcareMarketplaceAPI\API\HTTP;
+namespace TA\HealthcareMarketplaceAPI\HTTP;
 
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 use TA\HealthcareMarketplaceAPI\Config\Config;
+use TA\HealthcareMarketplaceAPI\ENUM\HTTPMethod;
 use TA\HealthcareMarketplaceAPI\Interfaces\APIInterface;
 
 class Api implements APIInterface
@@ -35,10 +36,10 @@ class Api implements APIInterface
      */
     public function get(string $uri, array $params = []) : ResponseInterface
     {
-        return $this->client->request(
-            'GET',
-            $this->getFullURI($uri),
-            $this->getCompleteParams($params),
+        return $this->request(
+            HTTPMethod::GET,
+            $uri,
+            $params,
         );
     }
 
@@ -52,23 +53,12 @@ class Api implements APIInterface
      */
     public function post(string $uri, array $params = [], array $data = []) : ResponseInterface
     {
-        return $this->client->request(
-            'POST',
-            $this->getFullURI($uri),
-            $this->getCompleteParams($params),
+        return $this->request(
+            HTTPMethod::POST,
+            $uri,
+            $params,
             $data
         );
-    }
-
-    /**
-     * Get Full URI
-     *
-     * @param string $uri
-     * @return string
-     */
-    private function getFullURI(string $uri) : string
-    {
-        return $this->config->getBaseURL() . $uri;
     }
 
     /**
@@ -82,6 +72,37 @@ class Api implements APIInterface
         return array_merge($params, [
             'apikey' => $this->config->getApiKey()
         ]);
+    }
+
+    /**
+     * Make an HTTP request
+     *
+     * @param HTTPMethod $method
+     * @param string $uri
+     * @param array $params
+     * @param array $data
+     * @return ResponseInterface
+     */
+    private function request(HTTPMethod $method, string $uri, array $params = [], array $data = []) : ResponseInterface
+    {
+        $options = [
+            'query' => $this->getCompleteParams($params),
+            'headers' => [
+                'Accept'     => 'application/json',
+            ]
+        ];
+
+        if($method === HTTPMethod::POST){
+            $options = array_merge($options, [
+                'form_params' => $data
+            ]);
+        }
+
+        return $this->client->request(
+            $method->value,
+            $this->config->getBaseURL() . $uri,
+            $options
+        );
     }
 
 }

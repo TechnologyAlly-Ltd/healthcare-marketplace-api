@@ -3,7 +3,7 @@
 namespace TA\HealthcareMarketplaceAPI\API;
 
 use Psr\Http\Message\ResponseInterface;
-use TA\HealthcareMarketplaceAPI\API\HTTP\Api;
+use TA\HealthcareMarketplaceAPI\HTTP\Api;
 
 class Marketplace
 {

@@ -8,13 +8,6 @@ use Psr\Http\Message\ResponseInterface;
 interface APIInterface
 {
     /**
-     * Holds the HTTP Client for the request
-     *
-     * @var Client
-     */
-    private Client $client;
-
-    /**
      * HTTP Get Request
      *
      * @param string $uri
