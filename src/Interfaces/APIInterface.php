@@ -2,8 +2,6 @@
 
 namespace TA\HealthcareMarketplaceAPI\Interfaces;
 
-use Psr\Http\Message\ResponseInterface;
-
 interface APIInterface
 {
     /**
@@ -11,9 +9,9 @@ interface APIInterface
      *
      * @param string $uri
      * @param array $params
-     * @return ResponseInterface
+     * @return array
      */
-    public function get(string $uri, array $params = []) : ResponseInterface ;
+    public function get(string $uri, array $params = []) : array ;
 
     /**
      * HTTP POST Request
@@ -21,7 +19,7 @@ interface APIInterface
      * @param string $uri
      * @param array $params
      * @param array $data
-     * @return ResponseInterface
+     * @return array
      */
-    public function post(string $uri, array $params = [], array $data = []) : ResponseInterface ;
+    public function post(string $uri, array $params = [], array $data = []) : array ;
 }

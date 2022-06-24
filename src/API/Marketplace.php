@@ -2,7 +2,6 @@
 
 namespace TA\HealthcareMarketplaceAPI\API;
 
-use Psr\Http\Message\ResponseInterface;
 use TA\HealthcareMarketplaceAPI\HTTP\Api;
 
 class Marketplace
@@ -19,9 +18,9 @@ class Marketplace
     /**
      * Get Marketplace Versions
      *
-     * @return ResponseInterface
+     * @return array
      */
-    public function getVersion() : ResponseInterface
+    public function getVersion() : array
     {
         return $this->api->get('/versions');
     }
@@ -29,9 +28,9 @@ class Marketplace
     /**
      * Get Marketplace Market Years
      *
-     * @return ResponseInterface
+     * @return array
      */
-    public function getMarketYears() : ResponseInterface
+    public function getMarketYears() : array
     {
         return $this->api->get('/market-years');
     }
@@ -40,9 +39,9 @@ class Marketplace
      * Get Marketplace Crosswalk a previous year plan
      *
      * @param array $params
-     * @return ResponseInterface
+     * @return array
      */
-    public function getCrosswalk(array $params) : ResponseInterface
+    public function getCrosswalk(array $params) : array
     {
         return $this->api->get('/crosswalk', $params);
     }
@@ -51,9 +50,9 @@ class Marketplace
      * Get Marketplace Rate Areas
      *
      * @param array $params
-     * @return ResponseInterface
+     * @return array
      */
-    public function getRateAreas(array $params) : ResponseInterface
+    public function getRateAreas(array $params) : array
     {
         return $this->api->get('/rate-areas', $params);
     }
@@ -62,9 +61,9 @@ class Marketplace
      * Get Marketplace Enrollment Validate
      *
      * @param array $data
-     * @return ResponseInterface
+     * @return array
      */
-    public function getEnrollmentValidate(array $data) : ResponseInterface
+    public function getEnrollmentValidate(array $data) : array
     {
         return $this->api->post('/rate-areas', [], $data);
     }

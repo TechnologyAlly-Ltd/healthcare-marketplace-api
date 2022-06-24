@@ -3,9 +3,10 @@
 namespace TA\HealthcareMarketplaceAPI\HTTP;
 
 use GuzzleHttp\Client;
-use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Exception\ClientException;
 use TA\HealthcareMarketplaceAPI\Config\Config;
 use TA\HealthcareMarketplaceAPI\ENUM\HTTPMethod;
+use TA\HealthcareMarketplaceAPI\ENUM\HTTPResponse;
 use TA\HealthcareMarketplaceAPI\Interfaces\APIInterface;
 
 class Api implements APIInterface
@@ -32,9 +33,9 @@ class Api implements APIInterface
      *
      * @param string $uri
      * @param array $params
-     * @return ResponseInterface
+     * @return array
      */
-    public function get(string $uri, array $params = []) : ResponseInterface
+    public function get(string $uri, array $params = []) : array
     {
         return $this->request(
             HTTPMethod::GET,
@@ -49,9 +50,9 @@ class Api implements APIInterface
      * @param string $uri
      * @param array $params
      * @param array $data
-     * @return ResponseInterface
+     * @return array
      */
-    public function post(string $uri, array $params = [], array $data = []) : ResponseInterface
+    public function post(string $uri, array $params = [], array $data = []) : array
     {
         return $this->request(
             HTTPMethod::POST,
@@ -81,9 +82,9 @@ class Api implements APIInterface
      * @param string $uri
      * @param array $params
      * @param array $data
-     * @return ResponseInterface
+     * @return array
      */
-    private function request(HTTPMethod $method, string $uri, array $params = [], array $data = []) : ResponseInterface
+    private function request(HTTPMethod $method, string $uri, array $params = [], array $data = []) : array
     {
         $options = [
             'query' => $this->getCompleteParams($params),
@@ -97,12 +98,25 @@ class Api implements APIInterface
                 'form_params' => $data
             ]);
         }
-
-        return $this->client->request(
-            $method->value,
-            $this->config->getBaseURL() . $uri,
-            $options
-        );
+        try{
+            $response = $this->client->request(
+                $method->value,
+                $this->config->getBaseURL() . $uri,
+                $options
+            );
+            return [
+                'Status' => HTTPResponse::SUCCESS->value,
+                'Status_Code' => $response->getStatusCode(),
+                'Message' => $response->getBody()->getContents(),
+            ];
+        }catch(ClientException $e) {
+            $response = $e->getResponse();
+            return [
+                'Status' => HTTPResponse::ERROR->value,
+                'Status_Code' => $response->getStatusCode(),
+                'Message' => $response->getBody()->getContents(),
+            ];
+        }
     }
 
 }
