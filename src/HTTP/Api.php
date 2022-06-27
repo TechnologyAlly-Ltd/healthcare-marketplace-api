@@ -90,12 +90,14 @@ class Api implements APIInterface
             'query' => $this->getCompleteParams($params),
             'headers' => [
                 'Accept'     => 'application/json',
-            ]
+                'Content-Type' => 'application/json',
+            ],
+            'http_errors' => true
         ];
 
         if($method === HTTPMethod::POST){
             $options = array_merge($options, [
-                'form_params' => $data
+                'body' => json_encode($data)
             ]);
         }
         try{
@@ -107,14 +109,16 @@ class Api implements APIInterface
             return [
                 'Status' => HTTPResponse::SUCCESS->value,
                 'Status_Code' => $response->getStatusCode(),
-                'Message' => $response->getBody()->getContents(),
+                'Message' => json_decode($response->getBody()->getContents(), true),
             ];
         }catch(ClientException $e) {
             $response = $e->getResponse();
+            $response_array = json_decode($response->getBody()->getContents(), true);
             return [
                 'Status' => HTTPResponse::ERROR->value,
                 'Status_Code' => $response->getStatusCode(),
-                'Message' => $response->getBody()->getContents(),
+                'Message' => $response_array['message'],
+                'Error' => $response_array['error'],
             ];
         }
     }

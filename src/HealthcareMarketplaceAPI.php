@@ -4,6 +4,7 @@ namespace TA\HealthcareMarketplaceAPI;
 
 use TA\HealthcareMarketplaceAPI\API\Counties;
 use TA\HealthcareMarketplaceAPI\API\Drugs;
+use TA\HealthcareMarketplaceAPI\API\Households;
 use TA\HealthcareMarketplaceAPI\HTTP\Api;
 use TA\HealthcareMarketplaceAPI\API\Marketplace;
 use TA\HealthcareMarketplaceAPI\Config\Config;
@@ -84,6 +85,18 @@ class HealthcareMarketplaceAPI
     public function Drugs() : Drugs
     {
         return new Drugs(
+            $this->Api()
+        );
+    }
+
+    /**
+     * Get the Households instance
+     *
+     * @return Households
+     */
+    public function Households() : Households
+    {
+        return new Households(
             $this->Api()
         );
     }
