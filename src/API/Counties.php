@@ -17,7 +17,9 @@ class Counties
 
     /**
      * Get Counties By ZIP Code
-     *
+     * 
+     * @param string $zipcode
+     * @param array $params
      * @return array
      */
     public function getCountiesByZip(string $zipcode, array $params) : array
