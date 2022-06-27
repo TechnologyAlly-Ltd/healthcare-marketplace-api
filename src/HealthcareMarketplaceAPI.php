@@ -9,6 +9,7 @@ use TA\HealthcareMarketplaceAPI\API\Households;
 use TA\HealthcareMarketplaceAPI\API\Issuers;
 use TA\HealthcareMarketplaceAPI\HTTP\Api;
 use TA\HealthcareMarketplaceAPI\API\Marketplace;
+use TA\HealthcareMarketplaceAPI\API\Plans;
 use TA\HealthcareMarketplaceAPI\API\Providers;
 use TA\HealthcareMarketplaceAPI\API\States;
 use TA\HealthcareMarketplaceAPI\Config\Config;
@@ -149,6 +150,18 @@ class HealthcareMarketplaceAPI
     public function States() : States
     {
         return new States(
+            $this->Api()
+        );
+    }
+
+    /**
+     * Get the Plans instance
+     *
+     * @return Plans
+     */
+    public function Plans() : Plans
+    {
+        return new Plans(
             $this->Api()
         );
     }

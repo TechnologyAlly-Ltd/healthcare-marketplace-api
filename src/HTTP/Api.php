@@ -3,6 +3,7 @@
 namespace TA\HealthcareMarketplaceAPI\HTTP;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\ClientException;
 use TA\HealthcareMarketplaceAPI\Config\Config;
 use TA\HealthcareMarketplaceAPI\ENUM\HTTPMethod;
@@ -112,15 +113,28 @@ class Api implements APIInterface
                 'Message' => json_decode($response->getBody()->getContents(), true),
             ];
         }catch(ClientException $e) {
-            $response = $e->getResponse();
-            $response_array = json_decode($response->getBody()->getContents(), true);
-            return [
-                'Status' => HTTPResponse::ERROR->value,
-                'Status_Code' => $response->getStatusCode(),
-                'Message' => $response_array['message'],
-                'Error' => $response_array['error'],
-            ];
+            return $this->getResponse($e);
+        }catch(BadResponseException $e) {
+            return $this->getResponse($e);
         }
+    }
+
+    /**
+     * Gets response data fro, an exception
+     *
+     * @param BadResponseException|ClientException $e
+     * @return array
+     */
+    private function getResponse(BadResponseException | ClientException $e) : array
+    {
+        $response = $e->getResponse();
+        $response_array = json_decode($response->getBody()->getContents(), true);
+        return [
+            'Status' => HTTPResponse::ERROR->value,
+            'Status_Code' => $response->getStatusCode(),
+            'Message' => $response_array['message'],
+            'Error' => $response_array['error'],
+        ];
     }
 
 }
