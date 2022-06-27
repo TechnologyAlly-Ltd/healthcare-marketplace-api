@@ -12,21 +12,9 @@ You can install the package via composer:
 composer require ta/healthcaremarketplaceapi
 ```
 
-## Usage
+### Authrization
 
-```php
-// Usage description here
-```
-
-### Testing
-
-```bash
-composer test
-```
-
-### Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+Please apply for API for Marketplace API [Marketplace API Key Request](https://developer.cms.gov/marketplace-api/key-request.html).
 
 ## Contributing
 
@@ -38,13 +26,12 @@ If you discover any security related issues, please email shaiq.hassan@technolog
 
 ## Credits
 
--   [Shaiq](https://github.com/ta)
--   [All Contributors](../../contributors)
+-   [TechnologyAlly](https://technologyally.com)
+-   [Shaiq](https://www.linkedin.com/in/shaiq-hassan-82480788)
+-   [Kalhoro Ali Raza](https://pk.linkedin.com/in/kalhoro-ali-raza-3b871794)
+-   [Syed Hasan Ali](https://www.linkedin.com/in/syed-hasan-ali-b0313371)
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-## PHP Package Boilerplate
-
-This package was generated using the [PHP Package Boilerplate](https://laravelpackageboilerplate.com) by [Beyond Code](http://beyondco.de/).
