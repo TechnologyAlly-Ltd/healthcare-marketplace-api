@@ -1,0 +1,43 @@
+{
+    "name": "ta/healthcaremarketplaceapi",
+    "description": "This package will be used for fetching data from healthcare API",
+    "keywords": [
+        "ta",
+        "healthcaremarketplaceapi"
+    ],
+    "homepage": "https://github.com/ta/healthcaremarketplaceapi",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Shaiq",
+            "email": "shaiq.hassan@technologyally.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "guzzlehttp/guzzle": "7.4.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TA\\HealthcareMarketplaceAPI\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TA\\HealthcareMarketplaceAPI\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
