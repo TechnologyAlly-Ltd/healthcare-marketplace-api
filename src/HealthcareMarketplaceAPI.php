@@ -3,6 +3,7 @@
 namespace TA\HealthcareMarketplaceAPI;
 
 use TA\HealthcareMarketplaceAPI\API\Counties;
+use TA\HealthcareMarketplaceAPI\API\Coverage;
 use TA\HealthcareMarketplaceAPI\API\Drugs;
 use TA\HealthcareMarketplaceAPI\API\Households;
 use TA\HealthcareMarketplaceAPI\API\Issuers;
@@ -110,6 +111,18 @@ class HealthcareMarketplaceAPI
     public function Issuers() : Issuers
     {
         return new Issuers(
+            $this->Api()
+        );
+    }
+
+    /**
+     * Get the Coverage instance
+     *
+     * @return Coverage
+     */
+    public function Coverage() : Coverage
+    {
+        return new Coverage(
             $this->Api()
         );
     }
