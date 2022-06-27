@@ -2,8 +2,8 @@
 
 namespace TA\HealthcareMarketplaceAPI\ENUM;
 
-enum HTTPResponse : string
+abstract class HTTPResponse
 {
-    case SUCCESS = 'SUCCESS';
-    case ERROR = 'ERROR';
+    const SUCCESS = 'SUCCESS';
+    const ERROR = 'ERROR';
 }

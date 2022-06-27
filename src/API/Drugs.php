@@ -8,12 +8,19 @@ class Drugs
 {
 
     /**
+     * Holds the API object for the request
+     *
+     * @var Api
+     */
+    private Api $api;
+
+    /**
      * Creates new instance of client
      */
-    public function __construct(
-        private Api $api
-    )
-    {}
+    public function __construct(Api $api)
+    {
+        $this->api = $api;
+    }
 
     /**
      * Autocomplete drugs by name

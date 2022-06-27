@@ -24,12 +24,27 @@ class HealthcareMarketplaceAPI
     protected Config $config;
 
     /**
-     * @param string $api_key
+     * Api Key for the request
+     *
+     * @var string
      */
-    public function __construct(
-        private string $api_key,
-        private string $base_url = 'https://marketplace.api.healthcare.gov/api/v1'
-    ){
+    private string $api_key;
+
+    /**
+     * Base URL for the request
+     *
+     * @var string
+     */
+    private string $base_url;
+
+    /**
+     * @param string $api_key
+     * @param string $base_url
+     */
+    public function __construct(string $api_key, string $base_url = 'https://marketplace.api.healthcare.gov/api/v1')
+    {
+        $this->api_key = $api_key;
+        $this->base_url = $base_url;
         $this->config = new Config(
             $this->api_key,
             $this->base_url

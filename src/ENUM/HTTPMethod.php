@@ -2,8 +2,8 @@
 
 namespace TA\HealthcareMarketplaceAPI\ENUM;
 
-enum HTTPMethod : string
+abstract class HTTPMethod
 {
-    case GET = 'GET';
-    case POST = 'POST';
+    const GET = 'GET';
+    const POST = 'POST';
 }

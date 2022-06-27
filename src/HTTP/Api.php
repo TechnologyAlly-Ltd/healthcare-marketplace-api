@@ -20,12 +20,18 @@ class Api implements APIInterface
     private Client $client;
 
     /**
+     * Holds the Config for the request
+     *
+     * @var Config
+     */
+    private Config $config;
+
+    /**
      * Creates new instance of client
      */
-    public function __construct(
-        private Config $config
-    )
+    public function __construct(Config $config)
     {
+        $this->config = $config;
         $this->client = new Client();
     }
 
@@ -79,13 +85,13 @@ class Api implements APIInterface
     /**
      * Make an HTTP request
      *
-     * @param HTTPMethod $method
+     * @param string $method
      * @param string $uri
      * @param array $params
      * @param array $data
      * @return array
      */
-    private function request(HTTPMethod $method, string $uri, array $params = [], array $data = []) : array
+    private function request(string $method, string $uri, array $params = [], array $data = []) : array
     {
         $options = [
             'query' => $this->getCompleteParams($params),
@@ -103,12 +109,12 @@ class Api implements APIInterface
         }
         try{
             $response = $this->client->request(
-                $method->value,
+                $method,
                 $this->config->getBaseURL() . $uri,
                 $options
             );
             return [
-                'Status' => HTTPResponse::SUCCESS->value,
+                'Status' => HTTPResponse::SUCCESS,
                 'Status_Code' => $response->getStatusCode(),
                 'Message' => json_decode($response->getBody()->getContents(), true),
             ];
@@ -125,12 +131,12 @@ class Api implements APIInterface
      * @param BadResponseException|ClientException $e
      * @return array
      */
-    private function getResponse(BadResponseException | ClientException $e) : array
+    private function getResponse($e) : array
     {
         $response = $e->getResponse();
         $response_array = json_decode($response->getBody()->getContents(), true);
         return [
-            'Status' => HTTPResponse::ERROR->value,
+            'Status' => HTTPResponse::ERROR,
             'Status_Code' => $response->getStatusCode(),
             'Message' => $response_array['message'],
             'Error' => $response_array['error'],
